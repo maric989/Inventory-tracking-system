@@ -176,7 +176,7 @@ class ProductController extends Controller
         $notes->body = $request->body;
 
         $notes->item_id = $request->product_id;
-
+        $notes->user_id = $request->user_id;
         $notes->save();
 
         return back();

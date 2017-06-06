@@ -2,6 +2,7 @@
 
 @section('content')
 
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-7 col-md-offset-3">
@@ -44,6 +45,20 @@
 
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td>
+                                                <b>Item used by</b>
+                                            </td>
+                                            <td>
+                                                @if($product->user)
+                                                    <a href="/user/{{$product->user->id}}">
+                                                        {{ $product->user->first_name }} {{ $product->user->last_name }}
+                                                    </a>
+                                                @else
+                                                    No one is using this item at the moment.
+                                                @endif
+                                            </td>
+                                        </tr>
 
                                         <tr>
                                             <td>Aditional Attributes
@@ -77,6 +92,7 @@
                                             </form>
 
                                         </tr>
+
                                         <tr>
                                             <td>
                                                 <form action="/product/delete/{{$product->id}}" method="POST"
@@ -94,6 +110,7 @@
                                         {{ csrf_field()}}
 
                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
                                         <textarea name="body" cols="50" rows="5"
                                                   placeholder="add new notes">
@@ -108,8 +125,13 @@
                                     @foreach($notes as $note)
                                         <tr>
                                             <blockquote>
-                                                <hr><td><b>{{$note->body}}</b></td><br>
-                                                <td>{{$note->created_at->diffForHumans()}}</td>
+
+                                                <p>{{ $note->body }}</p>
+
+                                                    <a href="{{route(('users.show'), ($note->user_id))}}">
+                                                        {{ \App\User::find($note->user_id)->email }}
+                                                    </a> -
+                                                    <p>{{ $note->created_at->diffForHumans() }}</p>
 
                                             </blockquote>
 

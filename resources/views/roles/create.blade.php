@@ -47,73 +47,73 @@
     <form action="store" method="post">
         {{csrf_field()}}
 
-    <div class="row">
+        <div class="row">
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12">
 
-            <div class="form-group">
+                <div class="form-group">
 
-                <strong>Name:</strong>
+                    <strong>Name:</strong>
 
-                <input name="name" placeholder="Name" class="form-control">
+                    <input name="name" placeholder="Name" class="form-control">
 
-            </div>
-
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-
-            <div class="form-group">
-
-                <strong>Display Name:</strong>
-
-                <input type="text" name="display_name" placeholder="Display name" class="form-control">
+                </div>
 
             </div>
 
-        </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
 
-            <div class="form-group">
+                    <strong>Display Name:</strong>
 
-                <strong>Description:</strong>
+                    <input type="text" name="display_name" placeholder="Display name" class="form-control">
 
-                <textarea name="description" placeholder="Description..." class="form-control"></textarea>
+                </div>
 
             </div>
 
-        </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
 
-            <div class="form-group">
+                    <strong>Description:</strong>
 
-                <strong>Permission:</strong>
+                    <textarea name="description" placeholder="Description..." class="form-control"></textarea>
 
-                <br/>
+                </div>
 
-                @foreach($permission as $value)
+            </div>
 
-                    <label>
-                        <input type="checkbox" name="permission[]" value="{{$value->id}}">
-                        {{ $value->display_name }}</label>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+
+                <div class="form-group">
+
+                    <strong>Permission:</strong>
 
                     <br/>
 
-                @endforeach
+                    @foreach($permission as $value)
+
+                        <label>
+                            <input type="checkbox" name="permission[]" value="{{$value->id}}">
+                            {{ $value->display_name }}</label>
+
+                        <br/>
+
+                    @endforeach
+
+                </div>
+
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+
+                <button type="submit" class="btn btn-primary">Submit</button>
 
             </div>
 
         </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-
-        </div>
-
-    </div>
 
     </form>
 @endsection
