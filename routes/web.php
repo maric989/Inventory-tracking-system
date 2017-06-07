@@ -51,3 +51,6 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 });
+
+Route::get('/redirect/{provider}', 'SocialAuthController@redirect');
+Route::get('/callback/{provider}', 'SocialAuthController@callback');

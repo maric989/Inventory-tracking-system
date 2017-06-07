@@ -34,5 +34,16 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'facebook' => [
+        'client_id' => '300492737066948',
+        'client_secret' => 'f2d0497048b01a7962a89af58b827d23',
+        'redirect' => 'http://inventory-tracking.dev/callback/facebook',
+    ],
+
+    'google' => [
+        'client_id' => '1032295513851-e5ecki96goeu83nh9589el4tr0qtg0g2.apps.googleusercontent.com',
+        'client_secret' => 'rC8pljLjxCXe4ZOXnQz_-M2X',
+        'redirect' => 'http://inventory-tracking.dev/callback/google',
+    ],
 
 ];
