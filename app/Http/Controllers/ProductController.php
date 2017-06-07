@@ -138,9 +138,8 @@ class ProductController extends Controller
         $products->warranty= $request->input('warranty');
         $products->save();
 
-        // redirect
         return redirect('/product');
-        //}
+
     }
 
     /**

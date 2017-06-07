@@ -16,12 +16,12 @@
 
             <div class="pull-right">
 
-               {{-- @permission('item-create')--}}
+                @permission('item-create')
 
                 <a class="btn btn-success" href="product/create"> Create New Item</a>
 
-                {{--@endpermission
---}}
+                @endpermission
+
             </div>
 
         </div>
@@ -50,7 +50,7 @@
             <th>Location</th>
             <th>Date of purchase</th>
             <th>Warranty</th>
-            <th width="280px">Action</th>
+            <th>Action</th>
 
         </tr>
         </thead>
@@ -63,7 +63,17 @@
 
                 <td>{{ $item->type }}</td>
                 <td>{{ $item->serial_no }}</td>
-                <td>{{ $item->user->first_name }} {{ $item->user->last_name }}</td>
+                <td>
+                    @if($item->user)
+
+                        {{ $item->user->first_name }} {{ $item->user->last_name }}
+
+                    @else
+
+                        <p>No one use</p>
+
+                    @endif
+                </td>
                 <td>{{ $item->unique_id }}</td>
                 <td>{{ $item->location->name }}</td>
                 <td>{{ $item->date_of_purchase->format('d.M.Y') }}</td>

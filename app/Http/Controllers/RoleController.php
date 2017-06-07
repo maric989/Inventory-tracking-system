@@ -36,9 +36,7 @@ class RoleController extends Controller
         return view('roles.index',compact('roles'))
 
             ->with('i', ($request->input('page', 1) - 1) * 5);
-        /*$roles = Role::all();
 
-        return view('roles.index',compact('roles'));*/
     }
 
 
@@ -117,16 +115,7 @@ class RoleController extends Controller
     public function show($id)
 
     {
-/*
-        $role = Role::find($id);
-        $roles= Role::all();
 
-        $rolePermissions = Permission::all();/*join("permission_role", "permission_role.permission_id", "=", "permissions.id")
-            ->where("permission_role.role_id", $id)
-            ->get();*/
-
-/*
-        return view('roles.show', compact('role', 'rolePermissions','roles'));*/
 
 
         $role = Role::find($id);

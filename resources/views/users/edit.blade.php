@@ -45,17 +45,22 @@
     @endif
 
     <form action="{{route('users.update',$user->id)}}" method="post">
-    {{--need patch
-    --}}
-    <div class="row">
+
+        {{csrf_field()}}
+
+        <input name="_method" type="hidden" value="PUT">
+
+
+
+        <div class="row">
 
         <div class="col-xs-12 col-sm-12 col-md-12">
 
             <div class="form-group">
 
-                <strong>Name:</strong>
+                <strong>First Name:</strong>
 
-                <input type="text" name="name" class="form-control" placeholder="Name">
+                <input type="text" name="first_name" class="form-control" placeholder="first name" value="{{$user->first_name}}">
 
             </div>
 
@@ -65,46 +70,34 @@
 
             <div class="form-group">
 
-                <strong>Email:</strong>
+                <strong>Last Name:</strong>
 
-                <input type="text" name="email" placeholder="Email" class="form-control">
-
-            </div>
-
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-
-            <div class="form-group">
-
-                <strong>Password:</strong>
-
-                <input type="password" placeholder="password" name="password" class="form-control">
+                <input type="text" name="last_name" class="form-control" placeholder="last name" value="{{$user->last_name}}">
 
             </div>
 
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
-
-            <div class="form-group">
-
-                <strong>Confirm Password:</strong>
-
-                <input type="password" placeholder="confirm password" class="form-control" name="confirm_password">
-
-            </div>
-
-        </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
 
             <div class="form-group">
 
                 <strong>Role:</strong>
+                <select name="roles_id">
 
-                {{--{!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
---}}
+                    <option value="">none</option>
+
+                    @foreach($roles as $role)
+
+                        <option value="{{ $role->id }}">
+
+                            {{ $role->name }}
+                        </option>
+
+                    @endforeach
+
+                </select>
             </div>
 
         </div>
