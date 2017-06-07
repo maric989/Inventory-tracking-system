@@ -30,21 +30,9 @@
 
             <div class="form-group">
 
-                <strong>First Name:</strong>
+                <strong>Name:</strong>
 
-                {{ $user->first_name }}
-
-            </div>
-
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-
-            <div class="form-group">
-
-                <strong>Last Name:</strong>
-
-                {{ $user->last_name }}
+                {{ $user->name }}
 
             </div>
 
@@ -56,7 +44,15 @@
 
                 <strong>Location:</strong>
 
-                {{ $user->location->name }}
+               @if($user->location)
+
+                    {{ $user->location->name }}
+
+                @else
+
+                    <p>None</p>
+
+                @endif
 
             </div>
 

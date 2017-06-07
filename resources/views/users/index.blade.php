@@ -40,11 +40,7 @@
         <tr>
             <th>No</th>
 
-            <th>ID</th>
-
-            <th>First Name</th>
-
-            <th>Last Name</th>
+            <th>Name</th>
 
             <th>Location</th>
 
@@ -59,21 +55,29 @@
         @foreach ($data as $key => $user)
 
             <tr>
-                <td>{{++ $i}}</td>
 
                 <td>{{ $user->id }}</td>
 
-                <td>{{ $user->first_name }}</td>
+                <td>{{ $user->name }}</td>
 
-                <td>{{ $user->last_name }}</td>
+                <td>@if($user->location)
 
-                <td>{{$user->location->name}}</td>
+                        {{$user->location->name}}
+
+                    @else
+
+                        <p>None</p>
+
+                    @endif
+
+                </td>
 
                 <td>{{ $user->email }}</td>
 
                 <td>
 
                     @if(!empty($user->roles))
+
                         @foreach($user->roles as $v)
 
                             <label class="label label-success">{{ $v->display_name }}</label>
@@ -100,7 +104,8 @@
                     @endpermission
 
 
-                    <form method="post" action="users/{{$user->id}}" style="display: inline" onsubmit="return confirm('Are you sure?');">
+                    <form method="post" action="users/{{$user->id}}" style="display: inline"
+                          onsubmit="return confirm('Are you sure?');">
                         {{csrf_field()}}
 
                         <input name="_method" type="hidden" value="DELETE">
@@ -117,6 +122,8 @@
 
     </table>
 
-    {!! $data->render() !!}
+    {{--
+        {!! $data->render() !!}
+    --}}
 
 @endsection

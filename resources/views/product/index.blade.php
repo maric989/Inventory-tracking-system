@@ -66,11 +66,34 @@
                 <td>
                     @if($item->user)
 
-                        {{ $item->user->first_name }} {{ $item->user->last_name }}
+                        {{ $item->user->name }}
 
                     @else
 
-                        <p>No one use</p>
+
+                        <form method="post" action="addUser">
+                            {{csrf_field()}}
+
+                            <select name="user">
+
+                                <option value="">none</option>
+
+
+                                @foreach($users as $user)
+
+                                    <option value="{{ $user->id }}">
+
+                                        {{ $user->name }}
+
+                                    </option>
+
+
+                                @endforeach
+
+                            </select>
+
+                            <button type="submit">Add user</button>
+                        </form>
 
                     @endif
                 </td>

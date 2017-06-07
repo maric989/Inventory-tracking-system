@@ -51,64 +51,75 @@
         <input name="_method" type="hidden" value="PUT">
 
 
-
         <div class="row">
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12">
 
-            <div class="form-group">
+                <div class="form-group">
 
-                <strong>First Name:</strong>
+                    <strong>First Name:</strong>
 
-                <input type="text" name="first_name" class="form-control" placeholder="first name" value="{{$user->first_name}}">
+                    <input type="text" name="first_name" class="form-control" placeholder="first name"
+                           value="{{$user->name}}">
+
+                </div>
+
+            </div>
+
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+
+                <div class="form-group">
+
+                    <strong>Role:</strong>
+                    <select name="roles_id">
+
+                        <option value="">None</option>
+
+                        @foreach($roles as $role)
+
+                            <option value="{{ $role->id }}">
+
+                                {{ $role->name }}
+                            </option>
+
+                        @endforeach
+
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+
+                <div class="form-group">
+
+                    <strong>Location:</strong>
+                    <select name="location_id">
+
+                        <option value="">{{$user->location->name}}</option>
+
+                        @foreach($location as $loc)
+
+                            <option value="{{ $loc->id }}">
+
+                                {{ $loc->name }}
+                            </option>
+
+                        @endforeach
+
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+
+                <button type="submit" class="btn btn-primary">Submit</button>
 
             </div>
 
         </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-
-            <div class="form-group">
-
-                <strong>Last Name:</strong>
-
-                <input type="text" name="last_name" class="form-control" placeholder="last name" value="{{$user->last_name}}">
-
-            </div>
-
-        </div>
-
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-
-            <div class="form-group">
-
-                <strong>Role:</strong>
-                <select name="roles_id">
-
-                    <option value="">none</option>
-
-                    @foreach($roles as $role)
-
-                        <option value="{{ $role->id }}">
-
-                            {{ $role->name }}
-                        </option>
-
-                    @endforeach
-
-                </select>
-            </div>
-
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-
-        </div>
-
-    </div>
 
     </form>
 @endsection

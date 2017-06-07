@@ -26,13 +26,17 @@ class UserController extends Controller
     public function index(Request $request)
 
     {
-
+/*
         $data = User::orderBy('id','DESC')->paginate(5);
 
         return view('users.index',compact('data'))
 
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+            ->with('i', ($request->input('page', 1) - 1) * 5);*/
 
+        $data = User::all();
+        $location = Location::all();
+
+        return view('users.index',compact('data' , 'location'));
 
 
     }
@@ -146,12 +150,14 @@ class UserController extends Controller
 
         $user = User::find($id);
 
-        $roles = Role::lists('display_name','id');
+        $roles = Role::all();
 
-        $userRole = $user->roles->lists('id','id')->toArray();
+        $location = Location::all();
+
+        $userRole = $user->roles->toArray();
 
 
-        return view('users.edit',compact('user','roles','userRole'));
+        return view('users.edit',compact('user','roles','userRole','location'));
 
     }
 
@@ -173,46 +179,17 @@ class UserController extends Controller
 
     {
 
-        $this->validate($request, [
-
-            'name' => 'required',
-
-            'email' => 'required|email|unique:users,email,'.$id,
-
-            'password' => 'same:confirm-password',
-
-            'roles' => 'required'
-
-        ]);
-
-
-        $input = $request->all();
-
-        if(!empty($input['password'])){
-
-            $input['password'] = Hash::make($input['password']);
-
-        }else{
-
-            $input = array_except($input,array('password'));
-
-        }
-
 
         $user = User::find($id);
+        $user->detachRole($id);
 
-        $user->update($input);
+        $value = $request->input('roles_id');
+        $user->location_id = $request->input('location_id');
 
-        DB::table('role_user')->where('user_id',$id)->delete();
+        $user->attachRole($value);
 
+        $user->save();
 
-
-
-        foreach ($request->input('roles') as $key => $value) {
-
-            $user->attachRole($value);
-
-        }
 
 
         return redirect()->route('users.index')

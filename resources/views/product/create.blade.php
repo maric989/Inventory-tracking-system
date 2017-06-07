@@ -98,7 +98,7 @@
 
                                 <option value="{{ $user->id }}">
 
-                                    {{ $user->first_name }} {{ $user->last_name }}
+                                    {{ $user->name }}
 
                                 </option>
 

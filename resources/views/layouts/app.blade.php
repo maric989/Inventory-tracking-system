@@ -88,9 +88,11 @@
             <ul class="nav navbar-nav">
 
                 <li><a href="{{ url('/home') }}">Home</a></li>
+{{--
                 @permission('users-show')
+--}}
                 <li><a href="{{route('users.index')}}">Users</a></li>
-                @endpermission
+               {{-- @endpermission--}}
                 <li><a href="{{route('roles.index')}}">Roles</a></li>
 
                 <li><a href="{{route('product.index')}}">Items</a></li>

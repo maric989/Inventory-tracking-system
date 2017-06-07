@@ -22,7 +22,8 @@ class ProductController extends Controller
 
         $location = Location::all();
 
-        return view('product.index',compact('products','prod','location'));
+        $users = User::all();
+        return view('product.index',compact('products','prod','location','users'));
     }
 
     /**
@@ -183,5 +184,17 @@ class ProductController extends Controller
 
     }
 
+    public function addUser(Request $request)
+    {
+/*        dd($request);*/
+        $product = new Product;
+        $product->user_id = $request->user;
+        $product->save();
+
+        //TODO ovde zavrsiti assign user from show
+
+        return back();
+
+    }
 
 }
