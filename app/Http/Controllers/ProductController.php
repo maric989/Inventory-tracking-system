@@ -134,6 +134,7 @@ class ProductController extends Controller
             'date_of_purchase' => 'required',
             'warranty => required'
         ]);
+
         $products = Product::find($id);
 
         $products->name= $request->input('name');
@@ -165,7 +166,12 @@ class ProductController extends Controller
     public function addAttribute(Request $request, Attribute $attribute)
 
     {
+        $this->validate(request(), [
 
+            'name' => 'required|min:2',
+            'value' => 'required|min:2',
+
+        ]);
         $attribute->item_id = $request->product_id;
         $attribute->name = $request->name;
         $attribute->value = $request->value;
@@ -177,6 +183,12 @@ class ProductController extends Controller
 
     public function addNotes (Request $request,Notes $notes)
     {
+
+        $this->validate(request(), [
+
+            'body' => 'required|min:2',
+
+        ]);
 
         $notes->body = $request->body;
 

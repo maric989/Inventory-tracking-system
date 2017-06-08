@@ -131,6 +131,8 @@
 
                                     </form>
 
+                                    @include('layouts.errors')
+
 
                                     <a href="/product">Back to items</a>
                                     @foreach($notes as $note)
@@ -148,7 +150,6 @@
 
                                         </tr>
                                     @endforeach
-
                                 </div>
                             </div>
                         </div>

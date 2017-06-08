@@ -87,6 +87,20 @@
                 @endif
 
             </div>
+{{--
+            <p>Location: {{$user->location->name}}</p>
+--}}
+            <p>Products <i>{{$user->name}}</i> have:
+            @foreach($products as $product)
+
+
+                    <a href="{{route('product.show',$product->id)}}">{{$product->name}}</a>
+
+
+
+
+
+            @endforeach
 
         </div>
 

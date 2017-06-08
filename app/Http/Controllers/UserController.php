@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Location;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -127,8 +128,9 @@ class UserController extends Controller
     {
 
         $user = User::find($id);
+        $products = Product::all()->where( 'user_id',$id);
 
-        return view('users.show',compact('user'));
+        return view('users.show',compact('user','products'));
 
     }
 

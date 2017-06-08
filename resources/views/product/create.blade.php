@@ -119,6 +119,8 @@
 
             </form>
             <ul>
+                @include('layouts.errors')
+
             </ul>
 
         </div>
