@@ -37,6 +37,8 @@
                                         <tr>
                                             <td><b>Warranty:</b></td>
                                             <td>{{$product->warranty->format('d.M.Y')}}</td>
+
+
                                         </tr>
                                         <tr>
                                             <td><b>Location ID</b></td>
@@ -52,10 +54,10 @@
                                             <td>
                                                 @if($product->user)
                                                     <a href="/user/{{$product->user->id}}">
-                                                        {{ $product->user->first_name }} {{ $product->user->last_name }}
+                                                        {{ $product->user->name }}
                                                     </a>
                                                 @else
-                                                    No one is using this item at the moment.
+                                                    No one is using this item.
                                                 @endif
                                             </td>
                                         </tr>
@@ -106,6 +108,15 @@
                                         </tr>
                                     </table>
                                     <hr>
+
+                                    <td class="form-control">
+                                        @if($product->warranty < date('Y-m-d'))
+                                            <span class="alert-danger"> Your Warranty Expired</span>
+                                        @elseif($product->warranty < date("Y-m-d", strtotime("+1 month")))
+                                            <span class="alert-warning"> Your Warranty will expire in {{$current->diffInDays($product->warranty)}} days</span>
+                                        @endif
+                                    </td>
+
                                     <form class="form-control-static" method="post" action="addNotes">
                                         {{ csrf_field()}}
 
@@ -137,6 +148,7 @@
 
                                         </tr>
                                     @endforeach
+
                                 </div>
                             </div>
                         </div>

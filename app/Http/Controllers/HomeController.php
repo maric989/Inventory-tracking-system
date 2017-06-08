@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\User;
+use App\Location;
+Use App\Role;
+use App\Product;
+Use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +27,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $id = Auth::user()->id;
+
+        $logedUser = User::find($id);
+
+        $products = Product::all()->where( 'user_id',$id);
+
+
+
+        return view('home',compact('logedUser','products'));
     }
 }

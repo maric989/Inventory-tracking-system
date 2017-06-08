@@ -75,7 +75,7 @@
 
             <a class="navbar-brand" href="{{ url('/') }}">
 
-                Laravel
+                Inventory Tracking System
 
             </a>
 

@@ -22,7 +22,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::resource('users','UserController'/*,['middleware' => ['permission:users-show']]*/);
-    Route::post('addUser','ProductController@addUser');
+    Route::put('addUser','ProductController@addUser');
 
     Route::group( [ 'prefix' => 'product' ], function()
     {

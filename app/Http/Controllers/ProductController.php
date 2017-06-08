@@ -8,7 +8,7 @@ use App\Product;
 use Illuminate\Http\Request;
 use App\Attribute;
 use App\User;
-
+use Carbon\Carbon;
 class ProductController extends Controller
 {
     /**
@@ -23,7 +23,10 @@ class ProductController extends Controller
         $location = Location::all();
 
         $users = User::all();
-        return view('product.index',compact('products','prod','location','users'));
+
+        $current = Carbon::now();
+
+        return view('product.index',compact('products','prod','location','users','current'));
     }
 
     /**
@@ -92,9 +95,11 @@ class ProductController extends Controller
         $product = Product::find($id);
         $attributes = Attribute::all()->where('item_id',$id);
         $notes = Notes::all()->where('item_id',$id);
+        $current = Carbon::now();
 
 
-        return view('product.show',compact('product','attributes','notes'));
+
+        return view('product.show',compact('product','attributes','notes','current'));
     }
 
     /**
@@ -184,14 +189,15 @@ class ProductController extends Controller
 
     }
 
-    public function addUser(Request $request)
-    {
-/*        dd($request);*/
-        $product = new Product;
-        $product->user_id = $request->user;
-        $product->save();
+    public function addUser(Request $request,Product $product)
+    {/*
+       dd($request);*/
 
-        //TODO ovde zavrsiti assign user from show
+
+        $products =$product->find($request['item_id']);
+        $products->user_id = $request->user_id;
+        $products->save();
+
 
         return back();
 

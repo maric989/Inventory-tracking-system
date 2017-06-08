@@ -50,7 +50,8 @@
             <th>Location</th>
             <th>Date of purchase</th>
             <th>Warranty</th>
-            <th>Action</th>
+            <th width="230px">Action</th>
+            <th>Notification</th>
 
         </tr>
         </thead>
@@ -73,8 +74,10 @@
 
                         <form method="post" action="addUser">
                             {{csrf_field()}}
+                            {{ method_field('PUT') }}
+                        <input type="hidden" value="{{$item->id}}" name="item_id">
 
-                            <select name="user">
+                            <select name="user_id">
 
                                 <option value="">none</option>
 
@@ -118,7 +121,11 @@
                     @endpermission
 
                 </td>
-
+                <td>
+                    @if($item->warranty < date("Y-m-d", strtotime("+1 month")))
+                        <span class="alert-warning">Warranty expires in {{$current->diffInDays($item->warranty)}} days </span>
+                    @endif
+                </td>
             </tr>
 
         @endforeach

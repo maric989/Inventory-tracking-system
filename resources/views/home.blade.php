@@ -8,8 +8,21 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
-                </div>
+                    {{--{{dd($logedUser)}}--}}
+                    <p>Welcome <a href="{{route('users.show',$logedUser->id)}}">{{$logedUser->name}}</a> </p>
+
+                    <p>Your Location: {{$logedUser->location->name}}</p>
+                    <p>Your Products:
+                        @foreach($products as $product)
+
+                            <li><a href="{{route('product.show',$product->id)}}">{{$product->name}}</a>
+                                 | {{$product->location->name}}
+                                 | {{$product->unique_id}}
+
+                            </li>
+
+                        @endforeach
+                      </div>
             </div>
         </div>
     </div>
