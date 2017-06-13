@@ -31,8 +31,6 @@ class HomeController extends Controller
 
         $logedUser = User::find($id);
 
-        $products = Product::all()->where( 'user_id',$id);
-
 
 
         return view('home',compact('logedUser','products'));
